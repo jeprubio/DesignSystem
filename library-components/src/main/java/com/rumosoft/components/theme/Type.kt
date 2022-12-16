@@ -1,4 +1,4 @@
-package com.rumosoft.myapp.ui.theme
+package com.rumosoft.components.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

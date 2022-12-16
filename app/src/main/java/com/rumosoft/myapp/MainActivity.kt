@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumosoft.components.buttons.FilledButton
 import com.rumosoft.components.buttons.OutlinedButton
-import com.rumosoft.myapp.ui.theme.MyAppTheme
+import com.rumosoft.components.theme.MyAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

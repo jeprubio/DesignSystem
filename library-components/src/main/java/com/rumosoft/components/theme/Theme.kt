@@ -1,4 +1,4 @@
-package com.rumosoft.myapp.ui.theme
+package com.rumosoft.components.theme
 
 import android.app.Activity
 import android.os.Build
