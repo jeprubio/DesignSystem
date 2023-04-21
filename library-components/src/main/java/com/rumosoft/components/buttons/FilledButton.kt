@@ -16,20 +16,18 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 enum class FilledButton {
-    Primary, Secondary, Black, White;
+    Primary, Secondary, Tertiary;
 
     private val buttonColours
         @Composable get(): ButtonColors {
             val containerColor = when (this) {
                 Primary -> MaterialTheme.colorScheme.primary
                 Secondary -> MaterialTheme.colorScheme.secondary
-                Black -> Color.Black
-                White -> Color.White
+                Tertiary -> MaterialTheme.colorScheme.tertiary
             }
             return ButtonDefaults.buttonColors(
                 containerColor = containerColor,
@@ -41,8 +39,7 @@ enum class FilledButton {
         @Composable get() = when (this) {
             Primary -> MaterialTheme.colorScheme.onPrimary
             Secondary -> MaterialTheme.colorScheme.onSecondary
-            Black -> Color.White
-            White -> Color.Black
+            Tertiary -> MaterialTheme.colorScheme.onTertiary
         }
 
     @Composable
@@ -70,23 +67,18 @@ enum class FilledButton {
     }
 }
 
-@Preview(showBackground = true, widthDp = 900)
 @Composable
 internal fun FilledButtons() {
-    MaterialTheme {
-        Surface(color = Color.LightGray) {
-            Column(modifier = Modifier.padding(16.dp)) {
-                ButtonSize.values().onEach { buttonSize ->
-                    Text(
-                        text = buttonSize.name,
-                        style = MaterialTheme.typography.labelMedium,
-                        modifier = Modifier.padding(8.dp)
-                    )
-                    FilledButtonsRow(buttonSize, enabled = true)
-                    Spacer(modifier = Modifier.height(8.dp))
-                    FilledButtonsRow(buttonSize, enabled = false)
-                }
-            }
+    Column(modifier = Modifier.padding(16.dp)) {
+        ButtonSize.values().onEach { buttonSize ->
+            Text(
+                text = buttonSize.name,
+                style = MaterialTheme.typography.labelMedium,
+                modifier = Modifier.padding(8.dp)
+            )
+            FilledButtonsRow(buttonSize, enabled = true)
+            Spacer(modifier = Modifier.height(8.dp))
+            FilledButtonsRow(buttonSize, enabled = false)
         }
     }
 }
@@ -100,8 +92,7 @@ private fun FilledButtonsRow(buttonSize: ButtonSize, enabled: Boolean) {
         listOf(
             FilledButton.Primary,
             FilledButton.Secondary,
-            FilledButton.Black,
-            FilledButton.White
+            FilledButton.Tertiary,
         )
             .forEach {
                 it.Create(
@@ -111,5 +102,15 @@ private fun FilledButtonsRow(buttonSize: ButtonSize, enabled: Boolean) {
                     modifier = Modifier.padding(bottom = 4.dp),
                 )
             }
+    }
+}
+
+@Preview(showBackground = true, widthDp = 660)
+@Composable
+private fun PreviewFilledButtons() {
+    MaterialTheme {
+        Surface {
+            FilledButtons()
+        }
     }
 }

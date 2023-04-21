@@ -21,15 +21,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 enum class OutlinedButton {
-    Primary, Secondary, Black, White;
+    Primary, Secondary, Tertiary;
 
     private val buttonColour
         @Composable get() =
             when (this) {
                 Primary -> MaterialTheme.colorScheme.primary
                 Secondary -> MaterialTheme.colorScheme.secondary
-                Black -> Color.Black
-                White -> Color.White
+                Tertiary -> MaterialTheme.colorScheme.tertiary
             }
 
     private val disabledColour
@@ -50,7 +49,13 @@ enum class OutlinedButton {
                 contentColor = buttonColour,
                 disabledContentColor = disabledColour
             ),
-            border = if (enabled) BorderStroke(1.dp, buttonColour) else BorderStroke(1.dp, disabledColour),
+            border = if (enabled) BorderStroke(
+                1.dp,
+                buttonColour
+            ) else BorderStroke(
+                1.dp,
+                disabledColour
+            ),
             shape = RoundedCornerShape(percent = 50),
             enabled = enabled,
             modifier = modifier
@@ -65,23 +70,18 @@ enum class OutlinedButton {
     }
 }
 
-@Preview(showBackground = true, widthDp = 900)
 @Composable
 internal fun OutlinedButtons() {
-    MaterialTheme {
-        Surface(color = Color.LightGray) {
-            Column(modifier = Modifier.padding(16.dp)) {
-                ButtonSize.values().onEach { buttonSize ->
-                    Text(
-                        text = buttonSize.name,
-                        style = MaterialTheme.typography.labelMedium,
-                        modifier = Modifier.padding(8.dp)
-                    )
-                    OutlinedButtonsRow(buttonSize, enabled = true)
-                    Spacer(modifier = Modifier.height(8.dp))
-                    OutlinedButtonsRow(buttonSize, enabled = false)
-                }
-            }
+    Column(modifier = Modifier.padding(16.dp)) {
+        ButtonSize.values().onEach { buttonSize ->
+            Text(
+                text = buttonSize.name,
+                style = MaterialTheme.typography.labelMedium,
+                modifier = Modifier.padding(8.dp)
+            )
+            OutlinedButtonsRow(buttonSize, enabled = true)
+            Spacer(modifier = Modifier.height(8.dp))
+            OutlinedButtonsRow(buttonSize, enabled = false)
         }
     }
 }
@@ -95,8 +95,7 @@ private fun OutlinedButtonsRow(buttonSize: ButtonSize, enabled: Boolean) {
         listOf(
             OutlinedButton.Primary,
             OutlinedButton.Secondary,
-            OutlinedButton.Black,
-            OutlinedButton.White
+            OutlinedButton.Tertiary,
         )
             .forEach {
                 it.Create(
@@ -106,5 +105,17 @@ private fun OutlinedButtonsRow(buttonSize: ButtonSize, enabled: Boolean) {
                     modifier = Modifier.padding(bottom = 4.dp),
                 )
             }
+    }
+}
+
+@Preview(showBackground = true, widthDp = 660)
+@Composable
+internal fun PreviewOutlinedButtons() {
+    MaterialTheme {
+        Surface {
+            Column(modifier = Modifier.padding(16.dp)) {
+                OutlinedButtons()
+            }
+        }
     }
 }

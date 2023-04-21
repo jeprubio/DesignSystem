@@ -2,7 +2,7 @@ package com.rumosoft.components.buttons
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
@@ -46,29 +46,34 @@ fun Modifier.buttonSizeModifier(size: ButtonSize) = then(
         .height(size.height)
 )
 
-@Preview(showBackground = true, widthDp = 900, heightDp = 1250)
 @Composable
 fun Buttons() {
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text(
+            text = "FilledButton",
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier.padding(8.dp)
+        )
+        FilledButtons()
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "OutlinedButton",
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier.padding(8.dp)
+        )
+        OutlinedButtons()
+    }
+}
+
+@Preview(showBackground = true, widthDp = 660, heightDp = 1250)
+@Composable
+fun PreviewButtons() {
     MaterialTheme {
         Surface(
             color = Color.LightGray,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxSize(),
         ) {
-            Column(modifier = Modifier.padding(16.dp)) {
-                Text(
-                    text = "FilledButton",
-                    style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier.padding(8.dp)
-                )
-                FilledButtons()
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = "OutlinedButton",
-                    style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier.padding(8.dp)
-                )
-                OutlinedButtons()
-            }
+            Buttons()
         }
     }
 }
