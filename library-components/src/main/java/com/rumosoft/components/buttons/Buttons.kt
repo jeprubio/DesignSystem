@@ -1,11 +1,11 @@
 package com.rumosoft.components.buttons
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -48,20 +48,26 @@ fun Modifier.buttonSizeModifier(size: ButtonSize) = then(
 
 @Composable
 fun Buttons() {
-    Column(modifier = Modifier.padding(16.dp)) {
-        Text(
-            text = "FilledButton",
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(8.dp)
-        )
-        FilledButtons()
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = "OutlinedButton",
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(8.dp)
-        )
-        OutlinedButtons()
+    LazyColumn(
+        modifier = Modifier.padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        item {
+            Text(
+                text = "FilledButton",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(8.dp)
+            )
+            FilledButtons()
+        }
+        item {
+            Text(
+                text = "OutlinedButton",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(8.dp)
+            )
+            OutlinedButtons()
+        }
     }
 }
 

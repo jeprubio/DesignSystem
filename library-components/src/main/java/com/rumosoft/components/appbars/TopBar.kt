@@ -1,5 +1,6 @@
 package com.rumosoft.components.appbars
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -15,16 +16,23 @@ fun TopBar(
     apBarText: String,
     modifier: Modifier = Modifier,
     textCentered: Boolean = false,
+    navigationIcon: NavigationIcon? = null
 ) {
     if (textCentered) {
         CenterAlignedTopAppBar(
             title = { Text(text = apBarText) },
             modifier = modifier,
+            navigationIcon = {
+                navigationIcon?.GetIcon()
+            }
         )
     } else {
         TopAppBar(
             title = { Text(text = apBarText) },
             modifier = modifier,
+            navigationIcon = {
+                navigationIcon?.GetIcon()
+            }
         )
     }
 }
@@ -33,8 +41,18 @@ fun TopBar(
 @Composable
 fun TopBarPreview() {
     MaterialTheme {
-        TopBar(
-            apBarText = "App Bar Text",
-        )
+        Column {
+            TopBar(
+                apBarText = "App Bar Text",
+            )
+            TopBar(
+                apBarText = "App Bar Text",
+                navigationIcon = NavigationIconBack()
+            )
+            TopBar(
+                apBarText = "App Bar Text",
+                navigationIcon = NavigationIconMenu()
+            )
+        }
     }
 }

@@ -29,19 +29,11 @@ fun MainNavHost(navController: NavHostController) {
         }
 
         composable(Buttons.route) {
-            LazyColumn {
-                item {
-                    Buttons()
-                }
-            }
+            Buttons()
         }
 
         composable(AppBars.route) {
-            LazyColumn {
-                item {
-                    AppBars()
-                }
-            }
+            AppBars()
         }
     }
 }
