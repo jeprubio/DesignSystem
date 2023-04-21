@@ -73,7 +73,7 @@ enum class FilledButton {
 @ExperimentalFoundationApi
 @Preview(showBackground = true, widthDp = 900)
 @Composable
-fun FilledButtons() {
+internal fun FilledButtons() {
     MaterialTheme {
         Surface(color = Color.LightGray) {
             Column(modifier = Modifier.padding(16.dp)) {

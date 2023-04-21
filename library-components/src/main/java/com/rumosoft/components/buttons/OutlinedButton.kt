@@ -68,7 +68,7 @@ enum class OutlinedButton {
 @ExperimentalFoundationApi
 @Preview(showBackground = true, widthDp = 900)
 @Composable
-fun OutlinedButtons() {
+internal fun OutlinedButtons() {
     MaterialTheme {
         Surface(color = Color.LightGray) {
             Column(modifier = Modifier.padding(16.dp)) {

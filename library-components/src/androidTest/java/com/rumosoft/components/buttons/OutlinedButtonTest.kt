@@ -4,9 +4,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import io.mockk.justRun
-import io.mockk.mockk
-import io.mockk.verify
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 
@@ -22,14 +20,14 @@ internal class OutlinedButtonTest {
             OutlinedButton.Primary.Create(text = text)
         }
 
-        composeTestRule.onNodeWithText(text.uppercase()).assertIsDisplayed()
+        composeTestRule.onNodeWithText(text.uppercase(), useUnmergedTree = true).assertIsDisplayed()
     }
 
     @Test
     fun theOnClickShouldBeInvokedWhenPressed() {
         val text = "Button text"
-        val onClick: () -> Unit = mockk()
-        justRun { onClick() }
+        var clicked = false
+        val onClick = { clicked = true }
         composeTestRule.setContent {
             OutlinedButton.Primary.Create(
                 text = text,
@@ -39,6 +37,6 @@ internal class OutlinedButtonTest {
 
         composeTestRule.onNodeWithText(text.uppercase()).performClick()
 
-        verify { onClick() }
+        assertTrue(clicked)
     }
 }
