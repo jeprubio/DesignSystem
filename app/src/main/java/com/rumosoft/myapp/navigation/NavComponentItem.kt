@@ -21,5 +21,7 @@ sealed class NavComponentItem(
 
     object ComponentsList : NavComponentItem("componentsList")
 
-    object Buttons : NavComponentItem(destination = "Buttons")
+    object Buttons : NavComponentItem(destination = "buttons")
+
+    object AppBars : NavComponentItem(destination = "appBars")
 }

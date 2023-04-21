@@ -1,8 +1,8 @@
 package com.rumosoft.components.buttons
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
@@ -46,12 +46,14 @@ fun Modifier.buttonSizeModifier(size: ButtonSize) = then(
         .height(size.height)
 )
 
-@ExperimentalFoundationApi
 @Preview(showBackground = true, widthDp = 900, heightDp = 1250)
 @Composable
-fun ButtonsScreen() {
+fun Buttons() {
     MaterialTheme {
-        Surface(color = Color.LightGray) {
+        Surface(
+            color = Color.LightGray,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
                     text = "FilledButton",

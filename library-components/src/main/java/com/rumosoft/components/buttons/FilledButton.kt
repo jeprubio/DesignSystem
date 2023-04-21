@@ -1,6 +1,5 @@
 package com.rumosoft.components.buttons
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -71,7 +70,6 @@ enum class FilledButton {
     }
 }
 
-@ExperimentalFoundationApi
 @Preview(showBackground = true, widthDp = 900)
 @Composable
 internal fun FilledButtons() {
