@@ -4,7 +4,8 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -87,10 +88,11 @@ internal fun OutlinedButtons() {
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun OutlinedButtonsRow(buttonSize: ButtonSize, enabled: Boolean) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    FlowRow(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         listOf(
             OutlinedButton.Primary,
@@ -99,7 +101,12 @@ private fun OutlinedButtonsRow(buttonSize: ButtonSize, enabled: Boolean) {
             OutlinedButton.White
         )
             .forEach {
-                it.Create(text = PREVIEW_BUTTON_TEXT, size = buttonSize, enabled = enabled)
+                it.Create(
+                    text = PREVIEW_BUTTON_TEXT,
+                    size = buttonSize,
+                    enabled = enabled,
+                    modifier = Modifier.padding(bottom = 4.dp),
+                )
             }
     }
 }

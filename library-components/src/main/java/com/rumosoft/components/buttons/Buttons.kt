@@ -49,7 +49,7 @@ fun Modifier.buttonSizeModifier(size: ButtonSize) = then(
 @ExperimentalFoundationApi
 @Preview(showBackground = true, widthDp = 900, heightDp = 1250)
 @Composable
-fun ButtonsPreview() {
+fun ButtonsScreen() {
     MaterialTheme {
         Surface(color = Color.LightGray) {
             Column(modifier = Modifier.padding(16.dp)) {
