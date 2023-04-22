@@ -16,14 +16,14 @@ fun TopBar(
     apBarText: String,
     modifier: Modifier = Modifier,
     textCentered: Boolean = false,
-    navigationIcon: NavigationIcon? = null
+    navigationIconType: NavigationIconType = NavigationIconType.None,
 ) {
     if (textCentered) {
         CenterAlignedTopAppBar(
             title = { Text(text = apBarText) },
             modifier = modifier,
             navigationIcon = {
-                navigationIcon?.GetIcon()
+                NavigationIcon(navigationIconType = navigationIconType)
             }
         )
     } else {
@@ -31,7 +31,7 @@ fun TopBar(
             title = { Text(text = apBarText) },
             modifier = modifier,
             navigationIcon = {
-                navigationIcon?.GetIcon()
+                NavigationIcon(navigationIconType = navigationIconType)
             }
         )
     }
@@ -47,11 +47,11 @@ fun TopBarPreview() {
             )
             TopBar(
                 apBarText = "App Bar Text",
-                navigationIcon = NavigationIconBack()
+                navigationIconType = NavigationIconType.Back(onIconClicked = {})
             )
             TopBar(
                 apBarText = "App Bar Text",
-                navigationIcon = NavigationIconMenu()
+                navigationIconType = NavigationIconType.Menu(onIconClicked = {})
             )
         }
     }

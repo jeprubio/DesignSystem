@@ -1,5 +1,6 @@
 package com.rumosoft.components.appbars
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,12 +11,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun AppBars() {
+    val context = LocalContext.current
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -32,13 +35,17 @@ fun AppBars() {
             item {
                 TopBar(
                     apBarText = "App Bar Text",
-                    navigationIcon = NavigationIconBack()
+                    navigationIconType = NavigationIconType.Back(onIconClicked = {
+                        Toast.makeText(context, "back clicked", Toast.LENGTH_SHORT).show()
+                    })
                 )
             }
             item {
                 TopBar(
                     apBarText = "App Bar Text",
-                    navigationIcon = NavigationIconMenu()
+                    navigationIconType = NavigationIconType.Menu(onIconClicked = {
+                        Toast.makeText(context, "menu clicked", Toast.LENGTH_SHORT).show()
+                    })
                 )
             }
             item {
@@ -51,14 +58,18 @@ fun AppBars() {
                 TopBar(
                     apBarText = "App Bar Text",
                     textCentered = true,
-                    navigationIcon = NavigationIconBack()
+                    navigationIconType = NavigationIconType.Back(onIconClicked = {
+                        Toast.makeText(context, "back clicked", Toast.LENGTH_SHORT).show()
+                    })
                 )
             }
             item {
                 TopBar(
                     apBarText = "App Bar Text",
                     textCentered = true,
-                    navigationIcon = NavigationIconMenu()
+                    navigationIconType = NavigationIconType.Menu(onIconClicked = {
+                        Toast.makeText(context, "menu clicked", Toast.LENGTH_SHORT).show()
+                    })
                 )
             }
         }
