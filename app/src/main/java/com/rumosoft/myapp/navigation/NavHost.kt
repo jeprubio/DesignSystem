@@ -13,8 +13,10 @@ import androidx.navigation.compose.composable
 import com.rumosoft.components.appbars.AppBars
 import com.rumosoft.components.buttons.Buttons
 import com.rumosoft.components.buttons.FilledButton
+import com.rumosoft.components.colours.Colours
 import com.rumosoft.myapp.navigation.NavComponentItem.AppBars
 import com.rumosoft.myapp.navigation.NavComponentItem.Buttons
+import com.rumosoft.myapp.navigation.NavComponentItem.Colours
 import com.rumosoft.myapp.navigation.NavComponentItem.ComponentsList
 
 @Composable
@@ -34,6 +36,10 @@ fun MainNavHost(navController: NavHostController) {
 
         composable(AppBars.route) {
             AppBars()
+        }
+
+        composable(Colours.route) {
+            Colours()
         }
     }
 }
@@ -56,6 +62,13 @@ private fun ComponentsList(navigateTo: (destination: String) -> Unit) {
                 text = "AppBar",
                 onClick = {
                     navigateTo(AppBars.route)
+                },
+                modifier = Modifier.padding(16.dp)
+            )
+            FilledButton.Primary.Create(
+                text = "Colours",
+                onClick = {
+                    navigateTo(Colours.route)
                 },
                 modifier = Modifier.padding(16.dp)
             )

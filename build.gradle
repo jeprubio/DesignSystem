@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        compose_bom_version = "2023.04.00"
+        compose_bom_version = "2023.05.01"
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
