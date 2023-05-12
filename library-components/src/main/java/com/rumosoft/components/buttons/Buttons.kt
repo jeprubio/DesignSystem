@@ -71,9 +71,9 @@ fun Buttons() {
     }
 }
 
-@Preview(showBackground = true, widthDp = 660, heightDp = 1250)
+@Preview(showBackground = true, widthDp = 660, heightDp = 1300)
 @Composable
-fun PreviewButtons() {
+private fun PreviewButtons() {
     MaterialTheme {
         Surface(
             color = Color.LightGray,

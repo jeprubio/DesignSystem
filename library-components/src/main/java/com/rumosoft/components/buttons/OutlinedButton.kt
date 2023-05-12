@@ -110,7 +110,7 @@ private fun OutlinedButtonsRow(buttonSize: ButtonSize, enabled: Boolean) {
 
 @Preview(showBackground = true, widthDp = 660)
 @Composable
-internal fun PreviewOutlinedButtons() {
+private fun PreviewOutlinedButtons() {
     MaterialTheme {
         Surface {
             Column(modifier = Modifier.padding(16.dp)) {

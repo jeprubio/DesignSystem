@@ -100,9 +100,9 @@ private fun colours(): List<Colour> {
 
 data class Colour(val name: String, val colour: Color)
 
-@Preview
+@Preview(showBackground = true, heightDp = 1050)
 @Composable
-fun PreviewColours() {
+private fun PreviewColours() {
     MaterialTheme {
         Surface {
             Colours()
