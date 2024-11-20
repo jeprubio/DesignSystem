@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,43 +21,57 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumosoft.components.appbars.NavigationIconBack
+import com.rumosoft.components.appbars.TopBar
 
 @Composable
-fun Colours() {
+fun Colours(
+    onBack: () -> Unit = {},
+) {
     val colours = colours()
 
-    LazyColumn(
-        contentPadding = PaddingValues(8.dp)
-    ) {
-        items(colours) {
-            ElevatedCard(
-                modifier = Modifier.padding(8.dp),
-                elevation = CardDefaults.cardElevation(
-                    defaultElevation = 2.dp,
-                )
-            ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                ) {
-                    Text(
-                        text = it.name,
-                        style = MaterialTheme.typography.headlineMedium,
-                        modifier = Modifier
-                            .weight(1f)
-                            .align(Alignment.CenterVertically)
-                            .padding(horizontal = 16.dp)
+    Scaffold(
+        topBar = {
+            TopBar(
+                "Colours",
+                navigationIconType = NavigationIconBack(onBack)
+            )
+        },
+    ) { contentPadding ->
+        LazyColumn(
+            contentPadding = PaddingValues(8.dp),
+            modifier = Modifier.padding(contentPadding),
+        ) {
+            items(colours) {
+                ElevatedCard(
+                    modifier = Modifier.padding(8.dp),
+                    elevation = CardDefaults.cardElevation(
+                        defaultElevation = 2.dp,
                     )
-                    Surface(
-                        shadowElevation = 8.dp,
-                        tonalElevation = 8.dp
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
                     ) {
-                        Box(
+                        Text(
+                            text = it.name,
+                            style = MaterialTheme.typography.headlineMedium,
                             modifier = Modifier
-                                .background(color = it.colour)
-                                .size(100.dp)
+                                .weight(1f)
+                                .align(Alignment.CenterVertically)
+                                .padding(horizontal = 16.dp)
                         )
+                        Surface(
+                            shadowElevation = 8.dp,
+                            tonalElevation = 8.dp
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .background(color = it.colour)
+                                    .size(100.dp)
+                            )
+                        }
                     }
                 }
             }

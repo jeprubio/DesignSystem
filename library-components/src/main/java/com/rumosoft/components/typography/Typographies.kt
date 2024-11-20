@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,34 +18,48 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumosoft.components.appbars.NavigationIconBack
+import com.rumosoft.components.appbars.TopBar
 
 @Composable
-fun Typographies() {
+fun Typographies(
+    onBack: () -> Unit = {},
+) {
     val typographies = typographies()
 
-    LazyColumn(
-        contentPadding = PaddingValues(8.dp)
-    ) {
-        items(typographies) {
-            ElevatedCard(
-                modifier = Modifier.padding(8.dp),
-                elevation = CardDefaults.cardElevation(
-                    defaultElevation = 2.dp,
-                )
-            ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                ) {
-                    Text(
-                        text = it.name,
-                        style = it.typography,
-                        modifier = Modifier
-                            .weight(1f)
-                            .align(Alignment.CenterVertically)
-                            .padding(horizontal = 16.dp)
+    Scaffold(
+        topBar = {
+            TopBar(
+                "Typographies",
+                navigationIconType = NavigationIconBack(onBack)
+            )
+        },
+    ) { contentPadding ->
+        LazyColumn(
+            contentPadding = PaddingValues(8.dp),
+            modifier = Modifier.padding(contentPadding),
+        ) {
+            items(typographies) {
+                ElevatedCard(
+                    modifier = Modifier.padding(8.dp),
+                    elevation = CardDefaults.cardElevation(
+                        defaultElevation = 2.dp,
                     )
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                    ) {
+                        Text(
+                            text = it.name,
+                            style = it.typography,
+                            modifier = Modifier
+                                .weight(1f)
+                                .align(Alignment.CenterVertically)
+                                .padding(horizontal = 16.dp)
+                        )
+                    }
                 }
             }
         }

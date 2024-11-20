@@ -5,8 +5,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,10 +19,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun AppBars() {
+fun AppBars(
+    onBack: () -> Unit = {},
+) {
     val context = LocalContext.current
+    Scaffold(
+        topBar = {
+            TopBar(
+                "AppBars",
+                navigationIconType = NavigationIconBack(onBack)
+            )
+        },
+    ) { contentPadding ->
     Box(
         modifier = Modifier
+            .padding(contentPadding)
             .fillMaxSize()
             .background(color = Color.LightGray),
     ) {
@@ -35,7 +48,7 @@ fun AppBars() {
             item {
                 TopBar(
                     apBarText = "App Bar Text",
-                    navigationIconType = NavigationIconType.Back(onIconClicked = {
+                    navigationIconType = NavigationIconBack(onIconClicked = {
                         Toast.makeText(context, "back clicked", Toast.LENGTH_SHORT).show()
                     })
                 )
@@ -43,7 +56,7 @@ fun AppBars() {
             item {
                 TopBar(
                     apBarText = "App Bar Text",
-                    navigationIconType = NavigationIconType.Menu(onIconClicked = {
+                    navigationIconType = NavigationIconMenu(onIconClicked = {
                         Toast.makeText(context, "menu clicked", Toast.LENGTH_SHORT).show()
                     })
                 )
@@ -58,7 +71,7 @@ fun AppBars() {
                 TopBar(
                     apBarText = "App Bar Text",
                     textCentered = true,
-                    navigationIconType = NavigationIconType.Back(onIconClicked = {
+                    navigationIconType = NavigationIconBack(onIconClicked = {
                         Toast.makeText(context, "back clicked", Toast.LENGTH_SHORT).show()
                     })
                 )
@@ -67,13 +80,14 @@ fun AppBars() {
                 TopBar(
                     apBarText = "App Bar Text",
                     textCentered = true,
-                    navigationIconType = NavigationIconType.Menu(onIconClicked = {
+                    navigationIconType = NavigationIconMenu(onIconClicked = {
                         Toast.makeText(context, "menu clicked", Toast.LENGTH_SHORT).show()
                     })
                 )
             }
         }
     }
+        }
 }
 
 @Preview(showBackground = true, device = Devices.NEXUS_7)
